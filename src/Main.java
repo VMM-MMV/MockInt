@@ -1,9 +1,6 @@
 package src;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -53,7 +50,13 @@ public class Main {
         System.out.println(wordsMap);
         System.out.println(wordCount);
         System.out.println(vowelsMap);
+        Map.Entry<Character, Integer> maxVowelEntry = getMaxEntry(vowelsMap);
+        System.out.println(maxVowelEntry);
+
+
         System.out.println(consonantsMap);
+        Map.Entry<Character, Integer> maxConsonatEntry = getMaxEntry(consonantsMap);
+        System.out.println(maxConsonatEntry);
     }
 
     private void updateHashMap(HashMap<String, Integer> hashMap, String word) {
@@ -66,6 +69,13 @@ public class Main {
         character = Character.toLowerCase(character);
         int mapCharacterCount = hashMap.getOrDefault(character, 0);
         hashMap.put(character, mapCharacterCount + 1);
+    }
+
+    private Map.Entry<Character, Integer> getMaxEntry(HashMap<Character, Integer> hashMap) {
+        return hashMap.entrySet()
+                .stream()
+                .max(Map.Entry.comparingByValue())
+                .get();
     }
 }
 
