@@ -47,16 +47,14 @@ public class Main {
             updateHashMap(wordsMap, cleanWord);
         }
 
-        System.out.println(wordsMap);
-        System.out.println(wordCount);
-        System.out.println(vowelsMap);
+        System.out.println("Word Frequency: " + wordsMap);
+        System.out.println("Word Count: " + wordCount);
+
         Map.Entry<Character, Integer> maxVowelEntry = getMaxEntry(vowelsMap);
-        System.out.println(maxVowelEntry);
+        System.out.println("Vowel Biggest Frequency: " + maxVowelEntry);
 
-
-        System.out.println(consonantsMap);
-        Map.Entry<Character, Integer> maxConsonatEntry = getMaxEntry(consonantsMap);
-        System.out.println(maxConsonatEntry);
+        Map.Entry<Character, Integer> maxConsonantEntry = getMaxEntry(consonantsMap);
+        System.out.println("Consonant Biggest Frequency: " + maxConsonantEntry);
     }
 
     private void updateHashMap(HashMap<String, Integer> hashMap, String word) {
@@ -78,6 +76,5 @@ public class Main {
                 .get();
     }
 }
-
 
 //Hello, my name is John. How is your day?
