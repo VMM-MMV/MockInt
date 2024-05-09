@@ -1,80 +1,16 @@
 package src;
 
-import java.util.*;
+import src.Utils.UserInput;
 
 public class Main {
     public static void main(String[] args) {
-        Main main = new Main();
-        String userInput = main.getUserInput();
+        CalculateStatistics main = new CalculateStatistics();
+        UserInput userInputClass = new UserInput();
+        String userInput = userInputClass.getUserInput();
         main.calculateStatistics(userInput);
     }
 
-    private String getUserInput() {
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the text: \n");
-
-        String text = scanner.nextLine();
-
-        scanner.close();
-
-        return text;
-    }
-
-    private void calculateStatistics(String text) {
-        HashMap<String, Integer> wordsMap = new HashMap<>();
-        HashMap<Character, Integer> vowelsMap = new HashMap<>();
-        HashMap<Character, Integer> consonantsMap = new HashMap<>();
-        HashSet<Character> vowelCharacters = new HashSet<>(Arrays.asList('a', 'e', 'i', 'o', 'u'));
-
-
-        String[] splitText = text.split(" ");
-        int wordCount = splitText.length;
-        for (String word : splitText) {
-            String cleanWord = "";
-            for (Character character : word.toCharArray()) {
-                if (!Character.isAlphabetic(character)) continue;
-
-                cleanWord += Character.toLowerCase(character);
-
-                if (vowelCharacters.contains(character)) {
-                    updateHashMap(vowelsMap, character);
-                } else {
-                    updateHashMap(consonantsMap, character);
-                }
-            }
-
-            updateHashMap(wordsMap, cleanWord);
-        }
-
-        System.out.println("Word Frequency: " + wordsMap);
-        System.out.println("Word Count: " + wordCount);
-
-        Map.Entry<Character, Integer> maxVowelEntry = getMaxEntry(vowelsMap);
-        System.out.println("Vowel Biggest Frequency: " + maxVowelEntry);
-
-        Map.Entry<Character, Integer> maxConsonantEntry = getMaxEntry(consonantsMap);
-        System.out.println("Consonant Biggest Frequency: " + maxConsonantEntry);
-    }
-
-    private void updateHashMap(HashMap<String, Integer> hashMap, String word) {
-        word = word.toLowerCase();
-        int mapWordCount = hashMap.getOrDefault(word, 0);
-        hashMap.put(word, mapWordCount + 1);
-    }
-
-    private void updateHashMap(HashMap<Character, Integer> hashMap, Character character) {
-        character = Character.toLowerCase(character);
-        int mapCharacterCount = hashMap.getOrDefault(character, 0);
-        hashMap.put(character, mapCharacterCount + 1);
-    }
-
-    private Map.Entry<Character, Integer> getMaxEntry(HashMap<Character, Integer> hashMap) {
-        return hashMap.entrySet()
-                .stream()
-                .max(Map.Entry.comparingByValue())
-                .get();
-    }
 }
 
-//Hello, my name is John. How is your day?
+// Hello, my name is John. How is your day?
