@@ -1,6 +1,8 @@
 package src;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class Main {
@@ -26,7 +28,8 @@ public class Main {
         HashMap<String, Integer> wordsMap = new HashMap<>();
         HashMap<Character, Integer> vowelsMap = new HashMap<>();
         HashMap<Character, Integer> consonantsMap = new HashMap<>();
-//        HashMap
+        HashSet<Character> vowelCharacters = new HashSet<>(Arrays.asList('a', 'e', 'i', 'o', 'u'));
+
 
         String[] splitText = text.split(" ");
         int wordCount = splitText.length;
@@ -36,14 +39,33 @@ public class Main {
                 if (!Character.isAlphabetic(character)) continue;
 
                 cleanWord += Character.toLowerCase(character);
+
+                if (vowelCharacters.contains(character)) {
+                    updateHashMap(vowelsMap, character);
+                } else {
+                    updateHashMap(consonantsMap, character);
+                }
             }
 
-            int mapWordCount = wordsMap.getOrDefault(cleanWord, 0);
-            wordsMap.put(cleanWord, mapWordCount + 1);
+            updateHashMap(wordsMap, cleanWord);
         }
 
         System.out.println(wordsMap);
         System.out.println(wordCount);
+        System.out.println(vowelsMap);
+        System.out.println(consonantsMap);
+    }
+
+    private void updateHashMap(HashMap<String, Integer> hashMap, String word) {
+        word = word.toLowerCase();
+        int mapWordCount = hashMap.getOrDefault(word, 0);
+        hashMap.put(word, mapWordCount + 1);
+    }
+
+    private void updateHashMap(HashMap<Character, Integer> hashMap, Character character) {
+        character = Character.toLowerCase(character);
+        int mapCharacterCount = hashMap.getOrDefault(character, 0);
+        hashMap.put(character, mapCharacterCount + 1);
     }
 }
 
