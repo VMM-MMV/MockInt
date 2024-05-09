@@ -4,13 +4,11 @@ import src.Utils.UserInput;
 
 public class Main {
     public static void main(String[] args) {
-        CalculateStatistics main = new CalculateStatistics();
+        StatisticsCalculator statisticsCalculator = new StatisticsCalculator();
         UserInput userInputClass = new UserInput();
         String userInput = userInputClass.getUserInput();
-        main.calculateStatistics(userInput);
+        statisticsCalculator.calculateStatistics(userInput);
     }
-
-
 }
 
 // Hello, my name is John. How is your day?

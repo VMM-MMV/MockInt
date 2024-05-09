@@ -5,13 +5,15 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-public class CalculateStatistics {
-    HashMap<String, Integer> wordsMap = new HashMap<>();
-    HashMap<Character, Integer> vowelsMap = new HashMap<>();
-    HashMap<Character, Integer> consonantsMap = new HashMap<>();
-    int wordCount = 0;
+public class StatisticsCalculator {
+    private HashMap<String, Integer> wordsMap = new HashMap<>();
+    private int wordCount = 0;
+    private Map.Entry<Character, Integer> mostFrequentVowel;
+    private Map.Entry<Character, Integer> mostFrequentConsonant;
 
     public void calculateStatistics(String text) {
+        HashMap<Character, Integer> vowelsMap = new HashMap<>();
+        HashMap<Character, Integer> consonantsMap = new HashMap<>();
         HashSet<Character> vowelCharacters = new HashSet<>(Arrays.asList('a', 'e', 'i', 'o', 'u'));
 
         String[] splitText = text.split(" ");
@@ -38,11 +40,11 @@ public class CalculateStatistics {
         System.out.println("Word Frequency: " + wordsMap);
         System.out.println("Word Count: " + wordCount);
 
-        Map.Entry<Character, Integer> maxVowelEntry = getMaxEntry(vowelsMap);
-        System.out.println("Vowel Biggest Frequency: " + maxVowelEntry);
+        mostFrequentVowel = getMaxEntry(vowelsMap);
+        System.out.println("Most Frequent Vowel: " + mostFrequentVowel);
 
-        Map.Entry<Character, Integer> maxConsonantEntry = getMaxEntry(consonantsMap);
-        System.out.println("Consonant Biggest Frequency: " + maxConsonantEntry);
+        mostFrequentConsonant = getMaxEntry(consonantsMap);
+        System.out.println("Most Frequent Consonant: " + mostFrequentConsonant);
     }
 
     private void updateHashMap(HashMap<String, Integer> hashMap, String word) {
@@ -68,15 +70,15 @@ public class CalculateStatistics {
         return wordsMap;
     }
 
-    public HashMap<Character, Integer> getVowelsMap() {
-        return vowelsMap;
-    }
-
-    public HashMap<Character, Integer> getConsonantsMap() {
-        return consonantsMap;
-    }
-
     public int getWordCount() {
         return wordCount;
+    }
+
+    public Map.Entry<Character, Integer> getMostFrequentVowel() {
+        return mostFrequentVowel;
+    }
+
+    public Map.Entry<Character, Integer> getMostFrequentConsonant() {
+        return mostFrequentConsonant;
     }
 }
