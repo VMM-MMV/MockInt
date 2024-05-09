@@ -1,6 +1,7 @@
 package src;
 
-import src.Utils.UserInput;
+import src.functionality.StatisticsCalculator;
+import src.utils.UserInput;
 
 public class Main {
     public static void main(String[] args) {

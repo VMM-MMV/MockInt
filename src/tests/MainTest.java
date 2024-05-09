@@ -1,6 +1,7 @@
-package src;
+package src.tests;
 
 import org.junit.jupiter.api.Test;
+import src.functionality.StatisticsCalculator;
 
 import java.util.HashMap;
 import java.util.Map;
